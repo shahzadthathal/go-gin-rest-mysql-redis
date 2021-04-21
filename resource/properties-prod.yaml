@@ -1,0 +1,13 @@
+DB:
+  USER_NAME: "homestead"
+  PASSWORD: "!Secret1234"
+  HOST_NAME: "db:3306"
+  NAME: "go-gin-rest-mysql-redis"
+REDIS:
+  DSN: "redis:6379"
+  MAX_ACTIVE: 50
+  MAX_IDLE: 1000
+JWT:
+  ACCESS_SECRET: "pass@L31"  
+  REFRESH_SECRET: "reFF&5i"
+PORT: "8999"  
