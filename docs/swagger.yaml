@@ -1,4 +1,19 @@
 definitions:
+  model.MPost:
+    properties:
+      description:
+        example: abcdescription
+        type: string
+      id:
+        example: 1
+        type: integer
+      status:
+        example: true
+        type: boolean
+      title:
+        example: xyz
+        type: string
+    type: object
   model.MUser:
     properties:
       accountExpired:
@@ -109,6 +124,177 @@ paths:
       summary: Logout
       tags:
       - Logout
+  /post/:
+    get:
+      consumes:
+      - application/json
+      description: get posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.MPost'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - bearerAuth: []
+      summary: show list post
+      tags:
+      - Post
+    post:
+      consumes:
+      - application/json
+      description: add by json post
+      parameters:
+      - description: Post ID
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.MPost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - bearerAuth: []
+      summary: create post
+      tags:
+      - Post
+    put:
+      consumes:
+      - application/json
+      description: update by json post
+      parameters:
+      - description: Post ID
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.MPost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - bearerAuth: []
+      summary: update post
+      tags:
+      - Post
+  /post/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete post by ID
+      parameters:
+      - description: Post ID
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - bearerAuth: []
+      summary: delete a post by id
+      tags:
+      - Post
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.MPost'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - bearerAuth: []
+      summary: show Post by id
+      tags:
+      - Post
   /user/:
     get:
       consumes:
