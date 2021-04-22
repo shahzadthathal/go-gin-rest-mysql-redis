@@ -4,7 +4,7 @@
 
 3. cd  go-gin-rest-mysql-redis
 
-4. You need to get Gin, MySQL, Viper, sqlmock, assert, jwt, ksuid for UUID, and redis library dependencies for install it
+4. You need to get Gin, MySQL, Viper, sqlmock, assert, jwt, ksuid for UUID, and redis library dependencies for install it. Open cmd in your project directory and type
 ```
 go get github.com/gin-gonic/gin
 go get github.com/go-sql-driver/mysql
@@ -27,13 +27,18 @@ go get -u github.com/swaggo/gin-swagger
 go get -u github.com/swaggo/files
 ```
 
-7. To run application,open cmd in your project directory and type
+7. Run Tests
+```
+go test -v
+```
+
+8. Run application
 ```
 go run main.go
 ```
 
 
-8.  Browse Swagger UI [http://localhost:8999/swagger/index.html](http://localhost:8999/swagger/index.html)
+9.  Browse Swagger UI [http://localhost:8999/swagger/index.html](http://localhost:8999/swagger/index.html)
 
 ## Admin credentials
 ```
