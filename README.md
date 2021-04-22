@@ -32,7 +32,7 @@ go get -u github.com/swaggo/swag/cmd/swag
 go get -u github.com/swaggo/gin-swagger
 go get -u github.com/swaggo/files
 ```
-3. Browse Swagger UI [http://localhost:8999/swagger/index.html]
+3.  Browse Swagger UI [http://localhost:8999/swagger/index.html](http://localhost:8999/swagger/index.html)
 
 ## Admin credentials
 ```
