@@ -22,7 +22,7 @@ var accessSecret string
 var refreshSecret string
 var redisDSN string
 var maxActive, maxIdle int
-var timeToken = int(15)       // get from system param (minutes)
+var timeToken = int(60)       // get from system param (minutes)
 var timeRefreshToken = int(3) // get from system param (hours)
 
 // Pool ...

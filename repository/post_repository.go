@@ -67,15 +67,15 @@ func CreatePost(mPost model.MPost) (model.MPost, error) {
 
 	var err error
 
-	crt, err := db.Prepare("insert into posts (title, description, status) values (?, ?, ?)")
+	crt, err := db.Prepare("insert into posts (title, description, status, userId) values (?, ?, ?, ?)")
 	if err != nil {
 		log.Panic(err)
 		return mPost, err
 	}
 
-	res, err := crt.Exec(mPost.Title, mPost.Description, mPost.Status)
+	res, err := crt.Exec(mPost.Title, mPost.Description, mPost.Status, mPost.UserId)
 	if err != nil {
-		log.Panic(err)
+		//log.Panic(err)
 		return mPost, err
 	}
 

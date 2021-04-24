@@ -6,6 +6,7 @@ type MPost struct {
 	Title       string `json:"title" example:"xyz"`
 	Description string `json:"description" example:"abcdescription"`
 	Status      bool   `json:"status" example:"true"`
+	UserId      int64
 }
 
 // MPosts array of MPost type

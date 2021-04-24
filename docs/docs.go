@@ -127,11 +127,6 @@ var doc = `{
         },
         "/post/": {
             "get": {
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
                 "description": "get posts",
                 "consumes": [
                     "application/json"

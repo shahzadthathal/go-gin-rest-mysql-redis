@@ -15,7 +15,7 @@ func RoutesPost(rg *gin.RouterGroup) {
 	post := rg.Group("/post")
 
 	post.GET("/:id", util.TokenAuthMiddleware(), getPostByID)
-	post.GET("/", util.TokenAuthMiddleware(), getPosts)
+	post.GET("/", getPosts)
 	post.POST("/", util.TokenAuthMiddleware(), createPost)
 	post.PUT("/", util.TokenAuthMiddleware(), updatePost)
 	post.DELETE("/:id", util.TokenAuthMiddleware(), deletePostByID)
@@ -67,7 +67,6 @@ func getPostByID(c *gin.Context) {
 // @Failure 400 {string} string
 // @Failure 404 {object} model.MPost
 // @Failure 500 {string} string
-// @Security bearerAuth
 // @Router /post/ [get]
 func getPosts(c *gin.Context) {
 
@@ -97,6 +96,24 @@ func getPosts(c *gin.Context) {
 // @Router /post/ [post]
 func createPost(c *gin.Context) {
 
+	// c.JSON(200, gin.H{
+	// 	"token data": c.Request.Header["Userid"][0],
+	// })
+	// fmt.Println("userid: ", c.Request.Header["Userid"][0])
+	// return
+	userId := c.Request.Header["Userid"][0]
+	if userId == "" {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"message": "Somethnig went wrong"})
+		return
+	}
+	userIdParsedInt, _ := strconv.ParseInt(userId, 10, 64)
+
+	// userIdLogin, err := strconv.ParseInt(userId, 10, 64)
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+	// 	return
+	// }
+
 	var post model.MPost
 
 	if err := c.ShouldBindJSON(&post); err != nil {
@@ -104,6 +121,14 @@ func createPost(c *gin.Context) {
 		return
 	}
 
+	//Pointer to the Post struct
+	//ps := &post
+	//fmt.Println(ps)
+
+	//fmt.Println("x")
+	//fmt.Println(x)
+	//ps.UserId = x
+	post.UserId = userIdParsedInt
 	post, err := repository.CreatePost(post)
 	if err != nil {
 		c.JSON(http.StatusConflict, gin.H{"message": err.Error()})

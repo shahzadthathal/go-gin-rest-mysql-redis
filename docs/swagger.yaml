@@ -150,8 +150,6 @@ paths:
           description: Internal Server Error
           schema:
             type: string
-      security:
-      - bearerAuth: []
       summary: show list post
       tags:
       - Post
